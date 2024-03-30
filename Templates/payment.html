@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment | Foodio</title>
+    <link rel="icon" type="image/x-icon" href="../images/webicon.png">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fast Bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4="
+      crossorigin="anonymous"
+    />
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="../Css/payment.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css"
+    />
+    <link rel="stylesheet" href="../Css/loader.css">
+  </head>
+  <body>
+    
+  <!-- preloader starts -->
+  <div  id="headerloader" class="headerloader" >
+    <div class="loader"></div>
+  </div>
+    <div class="container">
+      <form action="">
+        <div class="row">
+          <div class="col">
+            <h3 class="title">billing address</h3>
+
+            <div class="inputBox">
+              <span>full name :</span>
+              <input type="text" placeholder="Tony Stark" id="name" />
+            </div>
+            <div class="inputBox">
+              <span>Mobile no :</span>
+              <input type="tel" placeholder="+91 9876543210" id="phone" />
+            </div>
+
+            <div class="inputBox">
+              <span>Email :</span>
+              <input type="email" placeholder="abc@mail.com" id="email" />
+            </div>
+
+            <div class="inputBox">
+              <span>address </span>
+              <span>Street :</span>
+              <input
+                type="text"
+                placeholder="Amphitheatre Parkway"
+                id="street"
+              />
+            </div>
+            <div class="inputBox">
+              <span>City :</span>
+              <input type="text" placeholder="Mountain View" id="city" />
+            </div>
+           
+
+          <div class="col">
+            <div class="inputBox">
+              <span>Landmark :</span>
+              <input type="text" placeholder="Large Bridge" id="landmark" />
+            </div>
+          </div>
+
+            <div class="inputBox">
+              <span>State :</span>
+              <input type="text" placeholder="Newyork" id="state" />
+            </div>
+
+            <div class="flex">
+              <div class="inputBox">
+                <span>country :</span>
+                <input type="text" placeholder="America" id="country" />
+              </div>
+              <div class="inputBox">
+                <span>zip code :</span>
+                <input type="text" placeholder="123 456" id="zipcode" />
+              </div>
+            </div>
+
+            <h3 class="title">payment</h3>
+
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-secondary dropdown-toggle"
+                data-bs-toggle="dropdown"
+                data-bs-display="static"
+                aria-expanded="false"
+              >
+                Payment Options
+              </button>
+              <ul class="dropdown-menu dropdown-menu-lg-end">
+                <li>
+                  <button
+                    class="dropdown-item disabled"
+                    type="button"
+                    onclick="updateButtonText('UPI')"
+                  >
+                    <i class="fa-brands fa-google-pay"></i> UPI
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    type="button"
+                    onclick="updateButtonText('Cash on delivery')"
+                  >
+                    <i class="fa-solid fa-wallet"></i> Cash on delivery
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item disabled"
+                    type="button"
+                    onclick="updateButtonText('Credit card / Debit Card')"
+                  >
+                    <i class="fa-solid fa-credit-card"></i> Credit card / Debit
+                    Card
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="inputBox">
+                <span>Amount :</span>
+                <input type="text" readonly value=""  id="rate" /> 
+            </div>
+           
+
+
+            <div class="inputBox">
+              <p id="infomsg" class="w-75"></p>
+            </div>
+          </div>
+
+          
+        </div>
+
+        <input
+          type="submit"
+          value="proceed to checkout"
+          class="submit-btn"
+          id="submit"
+        />
+      </form>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function updateButtonText(option) {
+        const dropdownButton = document.querySelector(".btn-group .btn");
+        dropdownButton.textContent = option;
+        document.getElementById("infomsg").innerHTML =
+          "Other payment methods will be added soon...";
+      }
+    </script>
+
+    <script type="module">
+          window.addEventListener('load',()=>{document.getElementById('headerloader').style.display='none';})
+      const rate = document.getElementById('rate')
+      let checkcred = () => {
+        if (!sessionStorage.getItem("user-creds") || !sessionStorage.getItem("Totalamount") )
+        {
+          window.location.href = "./main.html";
+        }
+        const tot =  sessionStorage.getItem("Totalamount");
+        rate.value="Rs. "+ tot+".00";
+      };
+      window.addEventListener("load", checkcred);
+
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getDatabase,
+        set,
+        ref,
+        update,
+        push,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithPhoneNumber,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { default as firebaseConfig } from "../Js/firebase.js";
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+
+      var name = document.getElementById("name");
+      var phone = document.getElementById("phone");
+      var email = document.getElementById("email");
+      var street = document.getElementById("street");
+      var city = document.getElementById("city");
+      var landmark = document.getElementById("landmark");
+      var state = document.getElementById("state");
+      var country = document.getElementById("country");
+      var zipcode = document.getElementById("zipcode");
+      const submit = document.getElementById("submit");
+      
+
+      const creds = sessionStorage.getItem("user-creds");
+      const uidinfo = JSON.parse(creds).uid;
+
+      submit.addEventListener("click", (eve) => {
+        eve.preventDefault();
+        // console.log(name.value,phone.value,email.value,street.value,city.value,landmark.value,state.value,country.value,zipcode.value);
+        // console.log("clicked");
+        try {
+          const newOrderRef = ref(
+            db,
+            "UsersRegisterList/" + uidinfo + "/address/"
+          );
+          const orderRef = push(newOrderRef);
+          set(orderRef, {
+            Name: name.value,
+            Phone: phone.value,
+            Email:email.value,
+            Street: street.value,
+            City: city.value,
+            Landmark: landmark.value,
+            State: state.value,
+            Country: country.value,
+            ZipCode: zipcode.value,
+          }).then(async () => {
+           await Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Successfully Ordered",
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "custom-swal", // Apply custom class to adjust width and height
+              },
+            });
+            window.location.href = "./main.html";
+          });
+        } catch (err) {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: `${err.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: "custom-swal", // Apply custom class to adjust width and height
+            },
+          });
+        }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

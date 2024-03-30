@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signin | Foodio</title>
+  <link rel="icon" type="image/x-icon" href="../images/webicon.png">
+  <!-- bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <!-- Fast Bootstrap cdn -->
+  <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet"
+    integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous" />
+
+  <!-- font awesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- aos cdn -->
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- sweetalert cdn -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="../Css/signup.css" />
+  <link rel="stylesheet" href="../Css/loader.css">
+</head>
+
+<body>
+
+    <!-- preloader starts -->
+    <div  id="headerloader" class="headerloader" >
+      <div class="loader"></div>
+    </div>
+
+  <!-- signup page -->
+
+  <div class="container background-color  my-10">
+    <div class="row my-4 py-5 ">
+      <h1 class="text-center">
+        Welcome Back
+      </h1>
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
+        <img class="img-fluid w-75 signup-img" src="../images/signin.png" alt="" />
+      </div>
+
+      <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <form class="mt-10 mx-5">
+
+          <div class="mb-3">
+            <i class="fa-solid fa-envelope"></i>
+            <label for="" class="form-label">Enter your Email</label>
+            <input type="text" class="form-control" id="Emailid" aria-describedby="emailHelp" required />
+          </div>
+          <div class="mb-3">
+            <i class="fa-solid fa-key"></i>
+            <label for="" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" required />
+          </div>
+          <div class="mb-3 d-flex justify-content-between">
+            <label class="form-check-label" for="exampleCheck1">New to Foodify ? <a style="text-decoration: none;" href="../Templates/signup.html">
+                Sign Up</a> </label><a style="text-decoration: none;" href="Forgot.html">Forgot password</a>
+          </div>
+          <div class="text-end">
+            <button type="submit" class="btn btn-subtle me-2"><a style="text-decoration: none;" href="../index.html">Cancel</a></button>
+            <button type="submit" id="submit" class="btn submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module">
+    window.addEventListener('load',()=>{document.getElementById('headerloader').style.display='none';})
+    let checkcred = ()=>{
+      if(sessionStorage.getItem("user-creds"))
+      {
+        window.location.href="./main.html";
+      }
+    }
+    window.addEventListener('load',checkcred)
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, set, ref, get, child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { default as firebaseConfig } from "../Js/firebase.js";
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const auth = getAuth(app);
+    const dbref = ref(db);
+
+    var Emailid = document.getElementById('Emailid')
+    var Password = document.getElementById('Password')
+    var submit = document.getElementById('submit')
+    var message = document.getElementById('message')
+
+    const signin = (event) => {
+      event.preventDefault();
+      signInWithEmailAndPassword(auth, Emailid.value, Password.value)
+        .then(credential => {
+          // getting from database
+          get(child(dbref, 'UsersRegisterList/' + credential.user.uid))
+            .then((snapshot) => {
+              if (snapshot.exists) {
+                sessionStorage.setItem("user-info", JSON.stringify(
+                  {
+                    Email: snapshot.val().Email,
+                    Phone: snapshot.val().PhoneNumber
+                  }
+                ))
+              }
+              sessionStorage.setItem("user-creds",JSON.stringify(credential.user));
+              window.location.href="./main.html";
+            })
+        }
+        )
+        .catch(
+          err => {
+            Swal.fire({
+            position: "center",
+            icon: "error",
+            title: `${err.message}`,
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+          popup: 'custom-swal' // Apply custom class to adjust width and height
+        }
+          });
+           
+          })
+    }
+    submit.addEventListener("click", signin);
+
+
+
+  </script>
+</body>
+
+</html>

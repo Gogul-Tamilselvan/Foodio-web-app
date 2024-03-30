@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --red:#f13f04;
+    --grey:rgb(211, 212, 215);
+
+}
+
+
+body{
+    font-family: "Poppins", sans-serif !important;
+    font-style: normal;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: rgba(255, 255, 255, 0.852);
+  }
+
+
+  /* nav bar starts */
+  .navbar{
+    
+    -webkit-box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+  }
+  .nav-link:hover{
+    color: var(--red);
+    
+  }
+  .loginbtn{
+    background-color: #f13f04;
+    color: white; 
+  }
+  .loginbtn a{
+    color: white; 
+    text-decoration: none;
+  }
+  .loginbtn a:hover,
+  .loginbtn:hover
+ {
+    transition: 1s ease all;
+    color: black;
+  }
+  .signupbtn{
+    background-color: #f13f04;
+    color: white;
+  }
+  .signupbtn:hover{
+    transition: 1s ease all;
+  }
+  .github{
+    background-color:  rgb(211, 212, 215);
+    font-size: larger;
+
+  }
+  .github:hover{
+    background-color: black;
+    color: aliceblue;
+    transition: 1s ease all;
+  }
+
+  /* signup page */
+
+  .background-color{
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 6px 7px 42px 15px rgba(0,0,0,0.25);
+-webkit-box-shadow: 6px 7px 42px 15px rgba(0,0,0,0.25);
+-moz-box-shadow: 6px 7px 42px 15px rgba(0,0,0,0.25);
+  }
+
+  .form-control:focus{
+    border: #f13f04 2px solid;
+  }
+  .submit{
+    background-color: #f13f04;
+    color: #ffffff;
+  }
+  .message{
+    display: none;
+  }
+  .signup-img{
+    /* position: relative;
+    bottom: 100px; */
+  }
+
+
+
+  .custom-swal {
+    width: 300px;
+      height: 150px; /* Change as needed */
+  }
+  .custom-swal .swal2-title
+  {
+    font-size: 14px;
+  }
+    .custom-swal .swal2-icon{
+      font-size: 8px;
+    }

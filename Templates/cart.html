@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Foodio</title>
+    <link rel="icon" type="image/x-icon" href="../images/webicon.png">
+    <!-- bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <!-- Fast Bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4="
+      crossorigin="anonymous"
+    />
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- aos cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../Css/signup.css" />
+    <link rel="stylesheet" href="../Css/main.css" />
+    <link rel="stylesheet/css" href="../Css/cart.css" type="text/css" />
+    <link rel="stylesheet" href="../Css/loader.css">
+  </head>
+
+  <body>
+
+  <!-- preloader starts -->
+  <div  id="headerloader" class="headerloader" >
+    <div class="loader"></div>
+  </div>
+
+    <!-- nav bar start -->
+
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarButtonsExample"
+          aria-expanded="false"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand mt-2" href="#">
+          <img src="../images/foodio.png" alt="" width="140" height="50"
+        </a>
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./main.html"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="./Profile.html"
+                >View your profile</a
+              >
+            </li>
+          </ul>
+          <div class="d-flex align-items-center ms-auto mb-2 mt-2">
+            <button type="button" id="loginbtn" class="btn px-3 me-2 loginbtn">
+              <i class="fa-solid fa-user"></i> Logout
+            </button>
+          
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- nav bar end -->
+
+    <!-- cart designing -->
+
+    <section class="h-100 h-custom">
+      <div class="container h-100 py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col">
+            <div class="d-flex justify-content-between">
+              <h3>Total amount: <span id="total_amount">0</span></h3>
+              <div id="paybutton">
+                <button
+                  type="button"
+                  id="paybtn"
+                  class="btn px-3 me-2 loginbtn"
+                >
+                  <i class="fa-regular fa-credit-card"></i
+                  ><a href=""> Proceed to Pay</a>
+                </button>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="h5">Shopping Bag</th>
+
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total Price</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  <!-- <tr>
+                    <th scope="row">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="https://picsum.photos/200"
+                          class="img-fluid rounded-3"
+                          style="width: 70px"
+                          alt="Food"
+                        />
+                        <div class="flex-column ms-4">
+                          <p class="mb-2">Food Name</p>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="align-middle">
+                      <div class="d-flex flex-row">
+                        <button id="minus"
+                          class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                        >
+                          <i class="fas fa-minus"></i>
+                        </button>
+
+                        <input
+                          id="form1"
+                          min="0"
+                          name="quantity"
+                          value="2"
+                          type="number"
+                          class="form-control form-control-sm"
+                          style="width: 50px"
+                        />
+
+                        <button id="plus"
+                          class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                        >
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <p id="sep-price" class="mb-0" style="font-weight: 500">
+                        250
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                        <p id="tot-price" class="mb-0" style="font-weight: 500">
+                            250
+                        </p>
+                      </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script type="module">
+          window.addEventListener('load',()=>{document.getElementById('headerloader').style.display='none';})
+      // for logout button
+      const loginbtn = document.getElementById("loginbtn");
+
+      let checkcred = () => {
+        if (!sessionStorage.getItem("user-creds")) {
+          window.location.href = "./signin.html";
+          loginbtn.style.display = "none";
+        }
+        if (sessionStorage.getItem("user-creds")) {
+          loginbtn.innerHTML = `<i class="fa-solid fa-right-from-bracket"></i> Logout`;
+          
+        }
+      };
+      checkcred();
+
+      // logout function
+      loginbtn.addEventListener("click", () => {
+        sessionStorage.clear();
+        signOut(auth)
+          .then(async () => {
+            let timerInterval;
+            await Swal.fire({
+              title: "Logging Out...",
+              html: "Going to close in <b></b> milliseconds.",
+              timer: 2000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                  timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              },
+            });
+            window.location.href = "./signin.html";
+          })
+          .catch((error) => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `error.message`,
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "custom-swal",
+              },
+            });
+          });
+      });
+
+
+      // firebase authentication
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getDatabase,
+        off,
+        set,
+        ref,
+        get,
+        child,remove,push,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,signOut,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      import { default as firebaseConfig } from "../Js/firebase.js";
+
+      const app = initializeApp(firebaseConfig);
+      const db = getDatabase();
+      const auth = getAuth(app);
+      const dbref = ref(db);
+
+      let arr = [];
+      let arr2 =[];
+      const tbody = document.getElementById("tbody");
+      async function addToCart() {
+        try {
+          arr.length = 0;
+          if(arr.length==0){
+        document.getElementById('paybutton').style.display='none';
+            }
+          const session = sessionStorage.getItem("user-creds");
+          const res = JSON.parse(session);
+          const uid = res.uid;
+          const orderDetailsRef = ref(
+            db,
+            "UsersRegisterList/" + uid + "/orderDetails/"
+          );
+          get(orderDetailsRef)
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                snapshot.forEach((childSnapshot) => {
+                  const foodid = childSnapshot.val().foodid;
+                  arr.push(foodid);
+                  
+                });
+              }
+            })
+            .then(() => {
+              
+              if(!arr.length==0){
+                           document.getElementById('paybutton').style.display='block';
+                                }
+              arr?.map(async (res, index) => {
+                const fetchingg = await fetch(
+                  `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${res}`
+                );
+                const response = await fetchingg.json();
+                const elem = document.createElement("h4");
+                const mealname = response.meals[0].strMeal;
+                const image = response.meals[0].strMealThumb;
+                const data = `
+                    <tr>
+                    <th scope="row">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src=${image}
+                          class="img-fluid rounded-3"
+                          style="width: 70px"
+                          alt="Food"
+                        />
+                        <div class="flex-column ms-4">
+                          <p class="mb-2">${mealname}</p>
+                        </div>
+                      </div>
+                    </th>
+                    <td class="align-middle">
+                      <div class="d-flex flex-row">
+                        <button class="btn btn-link px-2 minus" onclick="decreaseQuantity(${index})">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input id="form1-${index}" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm form1" style="width: 50px" />
+                                <button class="btn btn-link px-2 plus" onclick="increaseQuantity(${index})">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <p id="sep-price-${index}" class="mb-0 sep-price" style="font-weight: 500">
+                        250
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                        <p id="tot-price-${index}" class="mb-0 tot-price" style="font-weight: 500">
+                            0
+                        </p>
+                      </td>
+                  </tr>`;
+                tbody.innerHTML += data;
+              });
+            });
+        } catch (err) {
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: `err.message`,
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: "custom-swal", // Apply custom class to adjust width and height
+              },
+            })
+        }
+      }
+      addToCart();
+
+
+      let finalamount = 0;
+// plus button functionality
+      window.increaseQuantity = function (index) {
+        const quantityInput = document.getElementById(`form1-${index}`);
+        const quantity = parseInt(quantityInput.value);
+        quantityInput.value = quantity + 1;
+        const amount = parseInt(
+          document.getElementById(`sep-price-${index}`).innerText
+        );
+        const totalPriceElement = document.getElementById(`tot-price-${index}`);
+        totalPriceElement.innerText = (amount * (quantity + 1)).toString();
+
+        const totalAmount = getTotalAmount();
+        finalamount = totalAmount;
+        document.getElementById("total_amount").textContent = totalAmount;
+        console.log("Total Amount:", totalAmount);
+      };
+
+      // Function to decrease quantity and update total price
+      window.decreaseQuantity = function (index) {
+        const quantityInput = document.getElementById(`form1-${index}`);
+        const quantity = parseInt(quantityInput.value);
+
+        if (quantity > 0) {
+          const totalAmount = getTotalAmount();
+          finalamount = totalAmount;
+
+          const hhh = parseInt(
+            document.getElementById(`sep-price-${index}`).innerText
+          );
+          document.getElementById("total_amount").textContent =
+            totalAmount - hhh;
+          // console.log('Total Amount:', totalAmount);
+          quantityInput.value = quantity - 1;
+          const amount = parseInt(
+            document.getElementById(`sep-price-${index}`).innerText
+          );
+          const totalPriceElement = document.getElementById(
+            `tot-price-${index}`
+          );
+          totalPriceElement.innerText = (amount * (quantity - 1)).toString();
+        }
+      };
+      
+      function getTotalAmount() {
+        let totalAmount = 0;
+        const totalPrices = document.querySelectorAll(".tot-price");
+        totalPrices.forEach((price) => {
+          totalAmount += parseInt(price.textContent);
+        });
+        
+        return totalAmount;
+      }
+    
+      
+
+
+
+      const paybtn =document.getElementById('paybtn').addEventListener('click',(e)=>{
+        e.preventDefault();
+        const session = sessionStorage.getItem("user-creds");
+          const res = JSON.parse(session);
+          const uid = res.uid;
+        if (sessionStorage.getItem("user-creds")) {
+          remove(ref(db, 'UsersRegisterList/' + uid + '/orderDetails/'))
+          .then(()=>{
+            console.log("success");
+          })
+          sessionStorage.setItem("Totalamount", finalamount);
+          window.location.href="./payment.html";
+        }
+        
+      })
+      // let arr3=[];
+      // arr3.push(arr2)
+      // // storing into ordered items
+      // arr3.map((res)=>{
+      //   console.log(res);
+      //   res.map((res1)=>{
+      //     console.log(res1);
+      //   })
+      // })
+    </script>
+  </body>
+</html>

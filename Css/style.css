@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --red:#f13f04;
+    --grey:rgb(211, 212, 215);
+
+}
+
+
+body{
+    font-family: "Poppins", sans-serif !important;
+    font-style: normal;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+
+  /* nav bar starts */
+  .navbar{
+    
+    -webkit-box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+    box-shadow: 0px 6px 32px -9px rgba(0,0,0,0.75);
+  }
+  .nav-link:hover{
+    color: var(--red);
+    
+  }
+  .loginbtn{
+    background-color: rgb(211, 212, 215);
+    text-decoration: none;
+    color: black;
+    
+  }
+  .loginbtn a{
+    text-decoration: none;
+    color: black;
+    
+  }
+  .loginbtn:hover,
+  .loginbtn a:hover{
+    transition: 1s ease all;
+    text-decoration: none;
+  }
+  .signupbtn{
+    background-color: #f13f04;
+    color: white;
+  }
+  .signupbtn a{
+    color: white;
+    text-decoration: none;
+  }
+  .signupbtn:hover,
+  .signupbtn a:hover
+  {
+    color: black;
+    transition: 1s ease all;
+    text-decoration: none;
+  }
+  .github{
+    background-color:  rgb(211, 212, 215);
+    font-size: larger;
+
+  }
+  .github:hover{
+    background-color: black;
+    color: aliceblue;
+    transition: 1s ease all;
+  }
+
+  /* first page  */
+  #home{
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /* .top-page-headline{
+    width: 400px !important;
+  } */
+  .order-btn{
+    background-color: #f13f04;
+    color: aliceblue;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  .order-btn a{
+   color: white;
+  }
+  .order-btn:hover,
+  .order-btn a:hover
+  {
+    transition: 1s ease all;
+    text-decoration: none;
+    color: black;
+  }
+
+  .address-input{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+  }
+  .address-input:focus{
+    border: #f13f04 2px solid;
+  }
+  .search-btn{
+    border: #f13f04 2px solid;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 10px;
+  }
+  .search-btn:hover{
+    color: white;
+    background-color: var(--red);
+    transition: 1s ease all;
+  }
+
+  /* first page ends */
+.second-page{
+  width: 100%;
+  min-height: 100vh;
+}
+.courierimage{
+  border: 2px solid #f13f04;
+  border-radius: 50%;
+  padding: 5px;
+  transition: 500ms ease all;
+  margin-left: 30px;
+}
+.courierimage:hover{
+  transform: scale(1.05);
+}
+.Customer-box{
+  transition: 500ms ease all;
+}
+.Customer-box:hover{
+  border: 1px solid #f13f04;
+  transform: scale(1.02);
+}
+  
+ 
+  /* third page */ 
+.service{
+  width: 100%;
+min-height: 100vh;
+
+}
+  .order-img{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+  }
+  .third-page-card{
+    background-color: #e1dedea1;
+    border: none;
+    text-align: center;
+    padding: 6px;
+    transition: 400ms ease all;
+  }
+  .third-page-card:hover{
+    transform: scale(1.05);
+    background-color: #a3a0a0a1; 
+  }
+
+
+/* contact page */
+/* #contact{
+  width: 100%;
+  min-height: 100vh;
+} */
+
+
+.contact-details{
+  color: var(--red);
+}
+.form-control:focus{
+  border: #f13f04 2px solid;
+}
+
+/* contact page end */
+/* 
+footer page */
+
+.footer{
+  background-color: #f13f04;
+  color: white;
+}
+.quick-links a{
+  color: white;
+}
+.list-inline-item a{
+  color: white;
+}
+.fa-github,
+.fa-facebook,
+.fa-python,
+.fa-house,
+.fa-linkedin{
+  font-size: 20px;
+  transition: 400ms ease all;
+}
+.fa-github:hover,
+.fa-facebook:hover,
+.fa-python:hover,
+.fa-house:hover,
+.fa-linkedin:hover{
+  transform: scale(1.2);
+}
